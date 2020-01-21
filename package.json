@@ -1,0 +1,25 @@
+{
+  "name": "tcp-backend-services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.test.js",
+    "server": "nodemon ./src/blog/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "karma": "^4.4.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "mocha": "^6.2.2",
+    "mysql": "^2.17.1",
+    "node-fetch": "^2.6.0"
+  }
+}

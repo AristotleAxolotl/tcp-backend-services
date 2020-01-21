@@ -1,0 +1,11 @@
+{
+	"posts": [{
+			"id": 0,
+			"postBody": "Mocked Post Body, from Backend Service"
+		},
+		{
+			"id": 1,
+			"postBody": "This is a second Mocked Post Body, from Backend Service"
+		}
+	]
+}
