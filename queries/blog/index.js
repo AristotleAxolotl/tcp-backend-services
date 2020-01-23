@@ -1,6 +1,6 @@
 const connection = require('../connection');
 
-const get = async function(id) {
+const getById = async function(id) {
   const mysql = require("mysql");
 
   // let connection = mysql.createConnection({
@@ -24,6 +24,45 @@ const get = async function(id) {
     connection.query("USE AristotleTheAxolotl");
     response = new Promise((resolve, reject) => {
       connection.query("SELECT * FROM blog_posts WHERE postID = ?", id, function(
+        error,
+        results,
+        fields
+      ) {
+        if (error) throw error;
+        resolve(results);
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return JSON.stringify(await response);
+};
+
+const getByNumber = async function(number) {
+  const mysql = require("mysql");
+
+  // let connection = mysql.createConnection({
+  //   host: "localhost",
+  //   port: "3306",
+  //   user: "root",
+  //   password: "Ttab1998"
+  // });
+
+  // try {
+  //   connection.connect(error => {
+  //     if (error) throw error;
+  //     console.log("Connected!");
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
+  let response;
+  try {
+    connection.query("USE AristotleTheAxolotl");
+    response = new Promise((resolve, reject) => {
+      connection.query(`SELECT * FROM blog_posts LIMIT ${number}`, function(
         error,
         results,
         fields
@@ -121,7 +160,8 @@ const kill = async function(){
 }
 
 module.exports = {
-  get,
+  getById,
+  getByNumber,
   getAll,
   post,
   kill

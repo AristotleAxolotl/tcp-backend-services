@@ -5,7 +5,15 @@ const bodyParser = require("koa-body");
 module.exports = ({ blogRouter }) => {
   // getting mocked single blog post
   blogRouter.get("/get", async (ctx, next) => {
-    ctx.body = await queries.get(2);
+    if(ctx.query.id){
+      console.log('GET by id');
+      ctx.body = await queries.getById(ctx.query.id);
+    }
+    if(ctx.query.number){
+      console.log('GET by number');
+      ctx.body = await queries.getByNumber(ctx.query.number);
+    }
+    // if(ctx.query)
   });
   // getting blog posts from DB
   blogRouter.get("/getAll", async (ctx, next) => {
