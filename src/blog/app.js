@@ -25,28 +25,28 @@ app.use(async (ctx, next) => {
 });
 
 // instantiate our new Router
-const router = new Router();
-const dogRouter = new Router({
-  prefix: "/dogs"
-});
+// const router = new Router();
+// const dogRouter = new Router({
+//   prefix: "/dogs"
+// });
 
 const blogRouter = new Router({ prefix: "/blogPost" });
 // require our external routes and pass in the router
-const basicRoutes = require("../../routes/basic");
-basicRoutes({ router });
+// const basicRoutes = require("../../routes/basic");
+// basicRoutes({ router });
 
-const dogRoutes = require("../../routes/dogs");
-dogRoutes({ dogRouter });
+// const dogRoutes = require("../../routes/dogs");
+// dogRoutes({ dogRouter });
 
 const blogRoutes = require("../../routes/blog");
 blogRoutes({ blogRouter });
 
 // tells the router to use all the routes that are on the object
-app.use(router.routes());
-app.use(router.allowedMethods());
+// app.use(router.routes());
+// app.use(router.allowedMethods());
 
-app.use(dogRouter.routes());
-app.use(dogRouter.allowedMethods());
+// app.use(dogRouter.routes());
+// app.use(dogRouter.allowedMethods());
 
 app.use(blogRouter.routes());
 app.use(blogRouter.allowedMethods());
