@@ -1,4 +1,4 @@
-const connection = require('../connection');
+const connection = require("../connection");
 
 const getById = async function(id) {
   const mysql = require("mysql");
@@ -23,14 +23,14 @@ const getById = async function(id) {
   try {
     connection.query("USE AristotleTheAxolotl");
     response = new Promise((resolve, reject) => {
-      connection.query("SELECT * FROM blog_posts WHERE postID = ?", id, function(
-        error,
-        results,
-        fields
-      ) {
-        if (error) throw error;
-        resolve(results);
-      });
+      connection.query(
+        "SELECT * FROM blog_posts WHERE postID = ?",
+        id,
+        function(error, results, fields) {
+          if (error) throw error;
+          resolve(results);
+        }
+      );
     });
   } catch (error) {
     console.log(error);
@@ -140,13 +140,17 @@ const post = async function(request) {
   try {
     connection.query("USE AristotleTheAxolotl");
     response = new Promise((resolve, reject) => {
-      connection.query("INSERT INTO `blog_posts` SET ?", request, function(
-        error,
-        results
-      ) {
-        if (error) throw error;
-        resolve(results);
-      });
+      connection.query(
+        `INSERT INTO \`blog_posts\` (PostBody, ResourceLinks, Tags)
+        VALUES ('${request.PostBody}',
+        '${request.ResourceLinks}',
+        '${request.Tags}')`,
+        request,
+        function(error, results) {
+          if (error) throw error;
+          resolve(results);
+        }
+      );
     });
   } catch (error) {
     console.log(error);
@@ -155,9 +159,9 @@ const post = async function(request) {
   return JSON.stringify(await response);
 };
 
-const kill = async function(){
+const kill = async function() {
   connection.end();
-}
+};
 
 module.exports = {
   getById,
